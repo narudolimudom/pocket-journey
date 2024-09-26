@@ -1,4 +1,4 @@
-import { useFeatureExpenseStore } from "@app/store/store";
+import { useFeatureIncomeStore } from "@app/store/store";
 import ActionModal from "@components/modal/ActionModal";
 import { Input } from "antd";
 import { useEffect, useState } from "react";
@@ -9,30 +9,29 @@ interface ActionModalProps {
   onSuccess: () => void;
 }
 
-const CreateExpenseModal: React.FC<ActionModalProps> = ({
+const CreateIncomeModal: React.FC<ActionModalProps> = ({
   isOpenModal,
   updateOpenModal,
   onSuccess,
 }) => {
-  const { featureExpenses, addFeatureExpense } = useFeatureExpenseStore();
+  const { featureIncomes, addFeatureIncome } = useFeatureIncomeStore();
   const [inputValue, setInputValue] = useState("");
   useEffect(() => {
     setInputValue("");
   }, [isOpenModal]);
 
   const handleSubmit = async () => {
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
-    if (!inputValue.trim()){
-      return
+    if (!inputValue.trim()) {
+      return;
     }
-    addFeatureExpense({key: inputValue.trim(), name: inputValue.trim()})
+    addFeatureIncome({ key: inputValue.trim(), name: inputValue.trim() });
     updateOpenModal((prev) => !prev);
     onSuccess();
   };
 
   return (
     <ActionModal
-      title="Create Category"
+      title="Create Income Category"
       isOpenModal={isOpenModal}
       onSubmit={handleSubmit}
       onCancel={() => updateOpenModal((prev) => !prev)}
@@ -40,14 +39,13 @@ const CreateExpenseModal: React.FC<ActionModalProps> = ({
       <Input
         value={inputValue}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setInputValue(event.target.value)
-        }
-        }
-        addonBefore="Category Name"
+          setInputValue(event.target.value);
+        }}
+        addonBefore="Income Name"
         className="py-[10px]"
       />
     </ActionModal>
   );
 };
 
-export default CreateExpenseModal;
+export default CreateIncomeModal;

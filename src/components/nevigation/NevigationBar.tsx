@@ -100,43 +100,51 @@ const NevigationBar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <Layout style={{ width: "256px", background: "white" }}>
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-        theme="light"
-      >
-        <span
-        className="font-bold text-center py-[25px] bg-white"
+    // <div className=" w-[256px]">
+      <Layout style={{  background: "white" }}>
+        <Sider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={(value) => setCollapsed(value)}
+          theme="light"
+          breakpoint="lg"
+          // hide collapes button
+          trigger={null}
+          // collapsedWidth={20}
+          // onBreakpoint={(broken) => {
+          //   console.log(broken ? 'Collapsed' : 'Expanded');
+          //   setCollapsed(broken); // Auto-collapse when the screen size hits the breakpoint
+          // }}
         >
-          POCKET JOURNEY
-        </span>
-        <hr
-          className="h-[1px] border-0 mb-[12px] bg-line-gradient"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(224, 225, 226, 0) 0%, rgb(224, 225, 226) 49.52%, rgba(224, 225, 226, 0) 100%)",
-          }}
-        />
-        <Menu
-          //FIXME: CLassname
-          className="fast"
-          onClick={onClick}
-          style={{ width: 256 }}
-          defaultSelectedKeys={["1"]}
-          defaultOpenKeys={["sub1"]}
-          mode="inline"
-          items={menuItem}
-        />
-      </Sider>
-      {/* <a href="catetory">
+          <div className="font-bold text-center py-[25px] bg-white">
+            POCKET JOURNEY
+          </div>
+          <hr
+            className="h-[1px] border-0 mb-[12px] bg-line-gradient"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(224, 225, 226, 0) 0%, rgb(224, 225, 226) 49.52%, rgba(224, 225, 226, 0) 100%)",
+            }}
+          />
+          <Menu
+            //FIXME: CLassname
+            className="fast"
+            onClick={onClick}
+            // style={{ width: 256 }}
+            defaultSelectedKeys={["1"]}
+            defaultOpenKeys={["sub1"]}
+            mode="inline"
+            items={menuItem}
+          />
+        </Sider>
+        {/* <a href="catetory">
        Home
       </a>
       <a href="/">
        Home
       </a> */}
-    </Layout>
+      </Layout>
+    // </div>
   );
 };
 

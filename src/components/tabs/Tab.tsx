@@ -1,6 +1,7 @@
 import { TabsProps, Tabs } from "antd";
 import "@app/styles/NevigationBar.css";
 import Expense from "@app/modules/category/views/Expense";
+import Income from "@app/modules/category/views/Income";
 // import SingleButton from "@components/button/SingleButton";
 // import { PlusOutlined } from "@ant-design/icons";
 
@@ -18,7 +19,7 @@ const items: TabsProps["items"] = [
   {
     key: "2",
     label: "Income",
-    children: "Content of Tab Pane 2",
+    children: <Income/>,
   },
 ];
 

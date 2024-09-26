@@ -5,10 +5,21 @@ interface IFeatureExpense {
   name: string;
 }
 
+interface IFeatureIncome {
+  key: string;
+  name: string;
+}
+
 interface IFeatureExpenseState {
   featureExpenses: IFeatureExpense[];
   addFeatureExpense: (item: IFeatureExpense) => void;
   removeFeatureExpense: (name: string) => void;
+}
+
+interface IFeatureIncomesState {
+  featureIncomes: IFeatureIncome[];
+  addFeatureIncome: (item: IFeatureIncome) => void;
+  removeFeatureIncome: (name: string) => void;
 }
 
 export const useFeatureExpenseStore = create<IFeatureExpenseState>((set) => ({
@@ -27,3 +38,21 @@ export const useFeatureExpenseStore = create<IFeatureExpenseState>((set) => ({
       featureExpenses: state.featureExpenses.filter(expense => expense.name !== name)
     })),
 }));
+
+export const useFeatureIncomeStore = create<IFeatureIncomesState>((set) => ({
+  featureIncomes: [],
+  addFeatureIncome: (item: IFeatureIncome) =>
+    set((state) => {
+      if (state.featureIncomes.some(income => income.name === item.name)) {
+        throw new Error(`Feature income with name "${item.name}" already exists.`);
+      }
+      return {
+        featureIncomes: [...state.featureIncomes, item]
+      };
+    }),
+  removeFeatureIncome: (name: string) =>
+    set((state) => ({
+      featureIncomes: state.featureIncomes.filter(income => income.name !== name)
+    })),
+}));
+

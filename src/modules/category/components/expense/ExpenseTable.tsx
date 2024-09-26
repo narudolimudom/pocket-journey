@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Dropdown, Table } from "antd";
-import { featureExpenseHeader } from "../constants/table";
+import { featureExpenseHeader } from "../../constants/table";
 import { useFeatureExpenseStore } from "@app/store/store";
 import DeleteExpenseModal from "./deleteExpense/DeleteExpenseModal";
 
